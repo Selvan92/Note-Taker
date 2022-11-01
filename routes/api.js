@@ -45,17 +45,4 @@ router.post('/api/notes', (req, res) => {
 
 })
 
-router.delete('/api/notes/:id', (req, res) => {
-  // reading notes form db.json
-  let db = JSON.parse(fs.readFileSync(dbPath))
-  // removing note with id
-  let deleteNotes = db.filter(item => item.id !== req.params.id);
-  // Rewriting note to db.json
-  fs.writeFileSync(dbPath, JSON.stringify(deleteNotes));
-  res.json(deleteNotes);
-  
-})
-
-
 module.exports = router;
-
