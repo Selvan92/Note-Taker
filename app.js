@@ -16,8 +16,10 @@ app.use(express.urlencoded({extended: true}));
 
 // web  --- htmls
 
-app.use(webRouter);
 app.use(apiRouter);
+app.use(webRouter);
+
+
 
 // api  --- json
 

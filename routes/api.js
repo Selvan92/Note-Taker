@@ -10,8 +10,7 @@ const dbPath = path.join(__dirname, '..', 'db', 'db.json');
  * 
  * @returns {Array}
  */
-function getNotes(){
-
+function getNotes(){    
   // use fs to read the db.json
   const json = fs.readFileSync(dbPath, 'utf-8');
   // json parse
@@ -21,7 +20,9 @@ function getNotes(){
     return [];
   }
 }
-
+router.get('/api/notes', (req, res) => {
+  res.json(getNotes())
+  });
 
 router.post('/api/notes', (req, res) => {
 
@@ -32,7 +33,6 @@ router.post('/api/notes', (req, res) => {
     title: req.body.title,
   }
 
-
   // add to db.json
   const existing = getNotes();
 
@@ -42,7 +42,10 @@ router.post('/api/notes', (req, res) => {
 
   res.json(newNote);
 
-
 })
 
+router.get('/', (req, res) => {
+     const index = path.join(__dirname, '..', 'public', 'index.html');
+  res.sendFile(index);
+})
 module.exports = router;
